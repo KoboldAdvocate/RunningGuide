@@ -1,0 +1,7 @@
+{
+  "name": "running-guide",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
