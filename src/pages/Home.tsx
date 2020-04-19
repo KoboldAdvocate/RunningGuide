@@ -1,24 +1,45 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import React from 'react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
+import {useFirebase} from '../hooks/useFirebase';
+import { useInfo } from '../hooks/useInfo';
 
 const Home: React.FC = () => {
+  
+  const { userLogin, loggedIn, username, userPhoto } = useFirebase();
+  
+  function displayLogin() {
+    return (
+      <div>
+        <IonButton onClick={() => userLogin() }>Login</IonButton>
+      </div>
+    )
+  }
+
+  function displayUser() {
+    return (
+      <div>
+        <h1>Welcome, {username}</h1>
+        
+        <img src={userPhoto.toString()} />
+        <IonButton >click</IonButton>
+      </div>
+    )
+  }
+
   return (
     <IonPage>
+
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Running Guide</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+        {loggedIn ? displayUser() : displayLogin() }
       </IonContent>
+
     </IonPage>
   );
 };
