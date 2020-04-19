@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 export function useFirebase() {
     const [ loggedIn, setLogin ] = useState(false);
     var [ user, setUser ] = useState(null);
-    var [ userPhoto, setUserPhoto ] = useState<String>(".");
+    var [ userPhoto, setUserPhoto ] = useState<String>("/assets/images/cat.jpg");
     var [username, setUsername ] = useState<String>("Steve Madden");
 
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -40,6 +40,8 @@ export function useFirebase() {
         firebase.auth().signOut()
             .then(function() {
                 console.log("signed out");
+                window.location.reload(true);
+                
             })
             .catch(function(error) {
                 console.log("error logging out");
@@ -48,6 +50,7 @@ export function useFirebase() {
 
     return {
         userLogin,
+        userLogout,
         loggedIn,
         username,
         userPhoto

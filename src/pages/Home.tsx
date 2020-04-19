@@ -1,13 +1,24 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
-import React from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonMenu, IonList, IonItem, IonMenuButton } from '@ionic/react';
+import React, { useEffect } from 'react';
 import './Home.css';
 import {useFirebase} from '../hooks/useFirebase';
 import { useInfo } from '../hooks/useInfo';
+import { useWeather } from '../hooks/useWeather';
+import { Redirect } from 'react-router';
 
 const Home: React.FC = () => {
   
-  const { userLogin, loggedIn, username, userPhoto } = useFirebase();
+  // handles login/logout
+  const { userLogin, userLogout, loggedIn, username, userPhoto } = useFirebase();
+  // user settings
+  const { zipcode, changeTemp } = useInfo();
+  // openweathermap api calls
+  const { getWeather, temp, weather } = useWeather();
   
+  useEffect(() => {
+    getWeather();
+  })
+
   function displayLogin() {
     return (
       <div>
@@ -19,10 +30,39 @@ const Home: React.FC = () => {
   function displayUser() {
     return (
       <div>
-        <h1>Welcome, {username}</h1>
-        
-        <img src={userPhoto.toString()} />
-        <IonButton >click</IonButton>
+        <h1 className="name">Welcome, {username}</h1>
+        <img className="image" src={userPhoto.toString()} />  
+        <p>Weather in {zipcode}</p>
+        <p>{temp} and {weather}</p>
+
+        <IonButton onClick={ (() => getWeather()) } >Update</IonButton>
+
+        <IonMenu side="start" swipeGesture={true} contentId="timeMenu">
+          <IonHeader>
+            <IonToolbar color="primary">
+              <IonTitle>Relative Temp</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent id="timeMenu">
+            <IonList>
+              <IonButton onClick={() => changeTemp("Cold") }>Cold</IonButton>
+              <IonButton onClick={() => changeTemp("Warm") }>Warm</IonButton>
+              <IonButton onClick={() => changeTemp("Hot") }>Hot</IonButton>
+            </IonList>
+          </IonContent>
+
+          <IonHeader>
+            <IonTitle>Weather</IonTitle>
+          </IonHeader>
+          <IonContent id="weatherMenu">
+            <IonList>
+              <IonItem>Sunny</IonItem>
+              <IonItem>Cloudy</IonItem>
+              <IonItem>Rainy</IonItem>
+            </IonList>
+          </IonContent>
+        </IonMenu>
+        <IonButton onClick={ () => userLogout() }>Logout</IonButton>
       </div>
     )
   }
