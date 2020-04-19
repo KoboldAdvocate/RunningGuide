@@ -9,7 +9,6 @@ export function useWeather() {
     const [weather, setWeather] = useState('Sunny');
 
     useEffect(() => {
-        console.log(temp);
     })
 
     // Use the openweathermap api to get the weather in the current area
@@ -18,11 +17,11 @@ export function useWeather() {
             url: endpoint,
             method: 'get'
         }).then(response => {
-            console.log(response.data);
             // convert from kelvin to fahrenheit
-            setTemp((response.data.main.temp - 273.15) * 1.8 + 32);
+            var temp = (response.data.main.temp - 273.15) * 1.8 + 21;
+            temp = +temp.toFixed(0);
+            setTemp(temp);
             setWeather(response.data.weather[0].main);
-            console.log(temp);
             return response.data;
         })
     };

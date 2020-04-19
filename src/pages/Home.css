@@ -2,9 +2,16 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
-.name {
-}
 
 .image {
   width: 25%;
+}
+
+.loginButton {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

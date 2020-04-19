@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 
 export function useFirebase() {
     const [ loggedIn, setLogin ] = useState(false);
-    var [ user, setUser ] = useState(null);
+    var [ user, setUser ] = useState(undefined);
     var [ userPhoto, setUserPhoto ] = useState<String>("/assets/images/cat.jpg");
     var [username, setUsername ] = useState<String>("Steve Madden");
 
@@ -23,16 +23,13 @@ export function useFirebase() {
             var user = result.user;
 
             setLogin(true);
-            { user?.displayName ? setUsername(user.displayName) : setUsername("error") }
-            { user?.photoURL ? setUserPhoto(user.photoURL) : setUserPhoto("error") }
+            { user?.displayName ? setUsername(user.displayName) : setUsername("error") };
+            { user?.photoURL ? setUserPhoto(user.photoURL) : setUserPhoto("error") };
             console.log(user?.photoURL);
             console.log(userPhoto);
         })
         .catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var email = error.email;
-            var credential = error.credential;
+            console.log(error);
         });
     }
 
@@ -45,6 +42,7 @@ export function useFirebase() {
             })
             .catch(function(error) {
                 console.log("error logging out");
+                console.log(error);
             });
     }
 

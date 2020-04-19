@@ -1,10 +1,9 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonMenu, IonList, IonItem, IonMenuButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonMenu, IonList, IonItem } from '@ionic/react';
 import React, { useEffect } from 'react';
 import './Home.css';
 import {useFirebase} from '../hooks/useFirebase';
 import { useInfo } from '../hooks/useInfo';
 import { useWeather } from '../hooks/useWeather';
-import { Redirect } from 'react-router';
 
 const Home: React.FC = () => {
   
@@ -22,7 +21,7 @@ const Home: React.FC = () => {
   function displayLogin() {
     return (
       <div>
-        <IonButton onClick={() => userLogin() }>Login</IonButton>
+        <img src="/assets/images/signin.png" className="loginButton" onClick={() => userLogin() } alt="Login with Google" />
       </div>
     )
   }
@@ -31,9 +30,9 @@ const Home: React.FC = () => {
     return (
       <div>
         <h1 className="name">Welcome, {username}</h1>
-        <img className="image" src={userPhoto.toString()} />  
+        <img className="image" src={userPhoto.toString()} alt="User" />  
         <p>Weather in {zipcode}</p>
-        <p>{temp} and {weather}</p>
+        <p>{temp}°F and {weather}</p>
 
         <IonButton onClick={ (() => getWeather()) } >Update</IonButton>
 
