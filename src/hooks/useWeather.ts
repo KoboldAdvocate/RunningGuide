@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const api = '608fa8e1a8364ccd91200c7cc9575dff';
+const api = '';
 const location = 'Fredericksburg,usa'
 const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
 export function useWeather() {
