@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+<<<<<<< HEAD
 
+=======
+const api = '';
+const location = 'Fredericksburg,usa'
+const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
+>>>>>>> c27f032602c9f9140e5feff77f4a5c537dba5f50
 export function useWeather() {
     const [temp, setTemp] = useState(72);
     const [weather, setWeather] = useState('Sunny');
