@@ -1,18 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as firebase from 'firebase';
 
 export function useFirebase() {
     const [ loggedIn, setLogin ] = useState(false);
-    var [ user, setUser ] = useState(undefined);
     var [ userPhoto, setUserPhoto ] = useState<String>("/assets/images/cat.jpg");
     var [username, setUsername ] = useState<String>("Steve Madden");
 
     var provider = new firebase.auth.GoogleAuthProvider();
 
-    useEffect(() => {
-        console.log("logged in: " + loggedIn);
-    });
-
+    // get the user info from google
+    // populate states with info
     const userLogin = async() => {
         firebase
             .auth()
@@ -25,14 +22,13 @@ export function useFirebase() {
             setLogin(true);
             { user?.displayName ? setUsername(user.displayName) : setUsername("error") };
             { user?.photoURL ? setUserPhoto(user.photoURL) : setUserPhoto("error") };
-            console.log(user?.photoURL);
-            console.log(userPhoto);
         })
         .catch(function(error) {
             console.log(error);
         });
     }
 
+    // logs the user out of the program
     const userLogout = async() => {
         firebase.auth().signOut()
             .then(function() {

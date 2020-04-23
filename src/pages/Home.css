@@ -1,10 +1,17 @@
-ion-content ion-toolbar {
-  --background: translucent;
+ion-content {
+  --background: none;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
 .image {
   width: 25%;
+}
+
+.userDisplay {
+  background-color: grey;
 }
 
 .loginButton {
@@ -14,4 +21,13 @@ ion-content ion-toolbar {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.standardLayout {
+  text-align: center;
+}
+
+.buttons {
+  position: relative;
+  top: 100%;
 }

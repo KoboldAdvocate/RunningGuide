@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
-const api = '608fa8e1a8364ccd91200c7cc9575dff';
-const location = 'Fredericksburg,usa'
-const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
+
 export function useWeather() {
     const [temp, setTemp] = useState(72);
     const [weather, setWeather] = useState('Sunny');
+    const [location, setLocation] = useState("Fredericksburg, USA");
 
-    useEffect(() => {
-    })
+    const api = '608fa8e1a8364ccd91200c7cc9575dff';
+    const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
 
     // Use the openweathermap api to get the weather in the current area
     const getWeather = () => {
