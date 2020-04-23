@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Texas A&M geoservices
-const gpsAPI = 'daf5d612b2a941c192b5efe4c81dcc96';
+const gpsAPI = '';
 ;
 
 export function useInfo () {
