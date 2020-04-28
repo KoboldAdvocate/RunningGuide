@@ -1,6 +1,6 @@
 export const environment = {
     firebaseConfig: {
-        apiKey: "AIzaSyC9Ewv3z_-HKpEE4lPPAHIIMKJkyVFhfI8",
+        apiKey: "",
         authDomain: "runningguide-4f192.firebaseapp.com",
         databaseURL: "https://runningguide-4f192.firebaseio.com",
         projectId: "runningguide-4f192",
