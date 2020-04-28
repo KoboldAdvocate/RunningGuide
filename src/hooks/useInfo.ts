@@ -9,7 +9,7 @@ export function useInfo () {
     const [ username, setUsername ] = useState("Steve Miller");
     const [ zipcode, setZipcode ] = useState("22401");
 
-    const api = `daf5d612b2a941c192b5efe4c81dcc96`;
+    const api = ``;
     
     const changeTemp = (value: any) => {
 

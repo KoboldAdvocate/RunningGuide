@@ -12,7 +12,7 @@ export const WeatherReport: FunctionComponent <WeatherProps> = ({ currLocation, 
     const [temp, setTemp] = useState(72);
     const [weather, setWeather] = useState('Sunny');
 
-    const api = '608fa8e1a8364ccd91200c7cc9575dff';
+    const api = '';
     const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${currLocation}&APPID=${api}`;
 
     // Use the openweathermap api to get the weather in the current area
