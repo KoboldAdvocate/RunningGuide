@@ -22,7 +22,7 @@ export const WeatherReport: FunctionComponent <WeatherProps> = ({ currLocation, 
             method: 'get'
         }).then(response => {
             // convert from kelvin to fahrenheit
-            var temp = (response.data.main.temp - 273.15) * 1.8 + 21;
+            var temp = ((response.data.main.temp - 273.15) * 1.8 + 32);
             temp = +temp.toFixed(0);
             setTemp(temp);
             setWeather(response.data.weather[0].main);
@@ -36,7 +36,7 @@ export const WeatherReport: FunctionComponent <WeatherProps> = ({ currLocation, 
         if (temp >= 50 && temp < 90) {
             if (weather === "Clear") {
                 run = "It's a great time to run!";
-            } else if (weather === "Cloudy") {
+            } else if (weather === "Clouds") {
                 run = "No need to run with sunglasses";
                 image = "/assets/weather/cloudy.jpg";
             }
