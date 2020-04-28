@@ -3,11 +3,9 @@ import "./WeatherReport.css";
 import axios from 'axios';
 interface WeatherProps {
     currLocation: String
-    currTemp: Number,
-    sun: String
 }
 
-export const WeatherReport: FunctionComponent <WeatherProps> = ({ currLocation, currTemp, sun }) => {
+export const WeatherReport: FunctionComponent <WeatherProps> = ({ currLocation }) => {
 
     const [temp, setTemp] = useState(72);
     const [weather, setWeather] = useState('Sunny');

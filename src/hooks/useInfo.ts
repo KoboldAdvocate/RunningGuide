@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Texas A&M geoservices
-const gpsAPI = '';
 ;
 
 export function useInfo () {
@@ -22,6 +21,7 @@ export function useInfo () {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
+                console.log(`lat: ${lat} long: ${lon}`);
                 const endpoint = `https://geoservices.tamu.edu/Services/ReverseGeocoding/WebService/v04_01/HTTP/default.aspx?lat=${lat}&lon=${lon}&apikey=${api}&format=json&notStore=false&version=4.10`;
                 console.log(endpoint);
                 return axios({

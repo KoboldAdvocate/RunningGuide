@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIte
 import React, { useState } from 'react';
 import './Home.css';
 import {useFirebase} from '../hooks/useFirebase';
-import { useWeather } from '../hooks/useWeather';
 import { WeatherReport } from '../components/WeatherReport';
 import { useInfo } from '../hooks/useInfo';
 
@@ -11,7 +10,6 @@ const Home: React.FC = () => {
   // handles login/logout
   const { userLogin, userLogout, loggedIn, username, userPhoto } = useFirebase();
   // openweathermap api calls
-  const { getWeather, temp, weather } = useWeather();
   const { getLocation } = useInfo();
   const [location, setLocation] = useState("Fredericksburg, usa");
 
@@ -33,7 +31,7 @@ const Home: React.FC = () => {
         <div className="userDisplay">
           <h1 className="name">Welcome, {username}</h1>
           <img className="image" src={userPhoto.toString()} alt="User" />  
-          <WeatherReport currLocation={location} currTemp={temp} sun={weather}/>
+          <WeatherReport currLocation={location} />
         </div>
         <br /><br />
         <IonItem>
@@ -51,6 +49,7 @@ const Home: React.FC = () => {
   function displayMenu() {
     return (
       <IonMenu side="start" menuId="first" content-id="content"> 
+
         <IonContent id="content">
           <IonList>
             <IonItem>Morning</IonItem>

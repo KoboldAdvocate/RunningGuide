@@ -6,11 +6,12 @@ export function useWeather() {
     const [weather, setWeather] = useState('Sunny');
     const [location, setLocation] = useState("Fredericksburg, USA");
 
-    const api = '';
-    const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
 
     // Use the openweathermap api to get the weather in the current area
     const getWeather = () => {
+        const api = '';
+        const endpoint = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api}`;
+        console.log(endpoint);
         return axios({
             url: endpoint,
             method: 'get'
